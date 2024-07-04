@@ -77,7 +77,7 @@ function parse(tokens) {
                 break;
             }
         }
-        return { tipo: "DeclaracionVariable", tipoVar: tipo, declaraciones };
+        return { tipo: "DeclaracionVariable", tipoDato: tipo, declaraciones };
     }
 
     function parseAsignacion() {
@@ -94,7 +94,7 @@ function parse(tokens) {
         while (tokens[posicion] && tokens[posicion].tipo === "OPERADOR" && /^[=+\-*/<>]$/.test(tokens[posicion].valor)) {
             const operador = esperar("OPERADOR").valor;
             const derecha = parseTermino();
-            izquierda = { tipo: "ExpresionBinaria", operador, izquierda, derecha };
+            izquierda = { tipo: "ExpresionAsignada", operador, izquierda, derecha };
         }
         return izquierda;
     }
@@ -104,14 +104,14 @@ function parse(tokens) {
         while (tokens[posicion] && tokens[posicion].tipo === "OPERADOR" && /^[*/]$/.test(tokens[posicion].valor)) {
             const operador = esperar("OPERADOR").valor;
             const derecha = parseFactor();
-            izquierda = { tipo: "ExpresionBinaria", operador, izquierda, derecha };
+            izquierda = { tipo: "ExpresionAsignada", operador, izquierda, derecha };
         }
         return izquierda;
     }
 
     function parseFactor() {
         if (tokens[posicion].tipo === "NUMERO") {
-            return { tipo: "Literal", valor: parseFloat(esperar("NUMERO").valor) };
+            return { tipo: "Numero", valor: parseFloat(esperar("NUMERO").valor) };
         } else if (tokens[posicion].tipo === "IDENTIFICADOR") {
             const nombre = esperar("IDENTIFICADOR").valor;
             verificarVariableDeclarada(nombre);  // Asegurarse de que la variable esté declarada antes de usarla
