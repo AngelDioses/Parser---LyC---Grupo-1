@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intérprete - Grupo 1 - LyC</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Parser - Grupo 1 - LyC</h1>
+    </header>
+    <div class="examples-bar">
+        <button onclick="loadEjemplo(1)">Asignación de Variables</button>
+        <button onclick="loadEjemplo(2)">Uso de bucle si-sino-finsi</button>
+        <button onclick="loadEjemplo(3)">Uso de bucle mientras-finmientras</button>
+        <button onclick="loadEjemplo(4)">Error de asignación</button>
+        <button onclick="loadEjemplo(5)">Error de bucle</button>
+    </div>
+    <div class="container">
+        <div class="editor-section">
+            <textarea id="codeInput" placeholder="Escribe tu código aquí..."></textarea>
+            <div class="buttons">
+                <button id="runButton">Ejecutar</button>
+                <button id="copyButton">Copiar</button>
+            </div>
+        </div>
+        <div class="output-section">
+            <div id="output">Resultado aparecerá aquí...</div>
+        </div>
+    </div>
+    <script src="parser.js"></script>
+    <script src="tokenizer.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
